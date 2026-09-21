@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberForge - Techwear & Streetwear Thời Trang Tương Lai</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f293d',
+                            600: '#334155',
+                            accent: '#00f0ff',
+                            purple: '#a855f7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #1f293d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f0ff; }
+    </style>
+</head>
+<body class="bg-cyber-900 text-gray-100 min-h-screen flex flex-col selection:bg-cyber-accent selection:text-cyber-900">
+
+    <!-- TOP BAR -->
+    <div class="bg-cyber-800 text-xs py-2 px-4 border-b border-cyber-700 text-center text-gray-400">
+        <span>🔥 Miễn phí vận chuyển toàn quốc cho đơn hàng từ <strong class="text-cyber-accent">500.000đ</strong> | Sử dụng mã <span class="text-cyber-purple font-bold">CYBERFORGE</span> giảm ngay 10%</span>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-40 bg-cyber-900/90 backdrop-blur-md border-b border-cyber-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded bg-gradient-to-br from-cyber-accent to-cyber-purple flex items-center justify-center text-cyber-900 font-extrabold text-xl shadow-lg shadow-cyber-accent/20 group-hover:scale-105 transition">
+                    CF
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-wider text-white uppercase">CYBER<span class="text-cyber-accent">FORGE</span></span>
+                    <span class="text-[10px] tracking-widest text-gray-400 uppercase">Techwear & Streetwear</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#home" class="text-cyber-accent transition">Trang Chủ</a>
+                <a href="#products" class="text-gray-300 hover:text-cyber-accent transition">Bộ Sưu Tập</a>
+                <a href="#features" class="text-gray-300 hover:text-cyber-accent transition">Đặc Điểm</a>
+                <a href="#about" class="text-gray-300 hover:text-cyber-accent transition">Về Chúng Tôi</a>
+            </nav>
+
+            <!-- Actions (Search, Wishlist, Cart) -->
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm..." class="bg-cyber-800 text-sm text-gray-200 pl-9 pr-4 py-2 rounded-full border border-cyber-700 focus:outline-none focus:border-cyber-accent w-48 lg:w-64 transition">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-400 text-xs"></i>
+                </div>
+                
+                <!-- Wishlist Button -->
+                <button onclick="openWishlist()" class="relative p-2.5 text-gray-300 hover:text-cyber-accent hover:bg-cyber-800 rounded-full transition" title="Yêu thích">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span id="wishlistCount" class="absolute -top-1 -right-1 bg-cyber-purple text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="toggleCart()" class="relative p-2.5 bg-cyber-800 hover:bg-cyber-700 text-cyber-accent rounded-full border border-cyber-700 transition flex items-center gap-2 px-3.5">
+                    <i class="fa-solid fa-bag-shopping text-base"></i>
+                    <span id="cartCount" class="bg-cyber-accent text-cyber-900 text-xs font-bold px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-b from-cyber-800 to-cyber-900 border-b border-cyber-700">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#00f0ff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            <div class="flex-1 text-center lg:text-left">
+                <span class="inline-block bg-cyber-accent/10 text-cyber-accent border border-cyber-accent/30 text-xs font-semibold px-3 py-1 rounded-full mb-6 uppercase tracking-widest">Bộ Sưu Tập Mới 2026</span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Định Hình Phong Cách <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-accent to-cyber-purple">Tương Lai</span>
+                </h1>
+                <p class="text-gray-400 text-base sm:text-lg mb-8 max-w-xl mx-auto lg:mx-0">
+                    Khám phá trang phục techwear và streetwear độc bản kết hợp công nghệ vật liệu đỉnh cao, mang lại sự thoải mái và vẻ ngoài cá tính mạnh mẽ.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                    <a href="#products" class="bg-cyber-accent text-cyber-900 font-bold px-8 py-3.5 rounded-lg shadow-lg shadow-cyber-accent/20 hover:bg-cyan-400 transition">
+                        Mua Sắm Ngay
+                    </a>
+                    <a href="#about" class="bg-cyber-800 text-gray-200 border border-cyber-700 font-semibold px-8 py-3.5 rounded-lg hover:bg-cyber-700 transition">
+                        Tìm Hiểu Thêm
+                    </a>
+                </div>
+            </div>
+            <div class="flex-1 relative">
+                <div class="relative w-full max-w-lg mx-auto aspect-square rounded-2xl overflow-hidden border border-cyber-700 shadow-2xl shadow-cyber-accent/10 group">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1000&auto=format&fit=crop" alt="CyberForge Hero" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-900 via-transparent to-transparent opacity-80"></div>
+                    <div class="absolute bottom-6 left-6 right-6 p-4 bg-cyber-900/80 backdrop-blur-md rounded-xl border border-cyber-700 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400">Sản phẩm nổi bật</p>
+                            <p class="text-sm font-bold text-white">Áo Khoác Cyber Jacket V2</p>
+                        </div>
+                        <span class="text-cyber-accent font-extrabold">1.250.000đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section id="products" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <h2 class="text-3xl font-extrabold text-white mb-2">Sản Phẩm Của Chúng Tôi</h2>
+                <p class="text-gray-400 text-sm">Lựa chọn phong cách techwear và phụ kiện chất lượng cao.</p>
+            </div>
+            <!-- Category Filters -->
+            <div id="categoryFilters" class="flex flex-wrap gap-2">
+                <button onclick="filterCategory('Tất cả')" class="category-btn active bg-cyber-accent text-cyber-900 font-semibold text-xs px-4 py-2 rounded-lg transition">Tất cả</button>
+                <button onclick="filterCategory('Áo Thun')" class="category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition">Áo Thun</button>
+                <button onclick="filterCategory('Áo Khoác')" class="category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition">Áo Khoác</button>
+                <button onclick="filterCategory('Quần Jeans')" class="category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition">Quần Jeans</button>
+                <button onclick="filterCategory('Váy/Đầm')" class="category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition">Váy/Đầm</button>
+                <button onclick="filterCategory('Phụ Kiện')" class="category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition">Phụ Kiện</button>
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Products will be injected by JavaScript -->
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="bg-cyber-800/50 border-y border-cyber-700 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-6 bg-cyber-800 rounded-xl border border-cyber-700">
+                <div class="w-12 h-12 bg-cyber-accent/10 text-cyber-accent rounded-lg flex items-center justify-center mx-auto mb-4 text-xl">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Giao Hàng Siêu Tốc</h3>
+                <p class="text-sm text-gray-400">Vận chuyển nhanh chóng toàn quốc với hệ thống logistics hiện đại.</p>
+            </div>
+            <div class="p-6 bg-cyber-800 rounded-xl border border-cyber-700">
+                <div class="w-12 h-12 bg-cyber-purple/10 text-cyber-purple rounded-lg flex items-center justify-center mx-auto mb-4 text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Chất Liệu Cao Cấp</h3>
+                <p class="text-sm text-gray-400">Vải chống nước, bền bỉ và thiết kế độc quyền chuẩn techwear.</p>
+            </div>
+            <div class="p-6 bg-cyber-800 rounded-xl border border-cyber-700">
+                <div class="w-12 h-12 bg-cyber-accent/10 text-cyber-accent rounded-lg flex items-center justify-center mx-auto mb-4 text-xl">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Hỗ Trợ 24/7</h3>
+                <p class="text-sm text-gray-400">Luôn sẵn sàng giải đáp và tư vấn kích cỡ tận tình cho khách hàng.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-extrabold text-white mb-4">Về CyberForge</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            CyberForge là thương hiệu tiên phong mang phong cách thời trang vị lai (Techwear & Streetwear) đến với giới trẻ Việt Nam. Chúng tôi kết hợp giữa tính năng ứng dụng cao trong đời sống và thẩm mỹ độc đáo, giúp bạn tự tin thể hiện cá tính riêng.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-cyber-800 border-t border-cyber-700 text-gray-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-cyber-accent to-cyber-purple flex items-center justify-center text-cyber-900 font-extrabold text-base">CF</div>
+                    <span class="text-lg font-extrabold text-white">CYBERFORGE</span>
+                </div>
+                <p class="text-xs text-gray-400">Thời trang tương lai cho thế hệ mới.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Danh Mục</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#products" class="hover:text-cyber-accent transition">Áo Khoác Techwear</a></li>
+                    <li><a href="#products" class="hover:text-cyber-accent transition">Áo Thun Streetwear</a></li>
+                    <li><a href="#products" class="hover:text-cyber-accent transition">Quần Jeans & Cargo</a></li>
+                    <li><a href="#products" class="hover:text-cyber-accent transition">Phụ Kiện Kính Mắt</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Chính Sách</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-cyber-accent transition">Chính sách đổi trả</a></li>
+                    <li><a href="#" class="hover:text-cyber-accent transition">Bảo mật thông tin</a></li>
+                    <li><a href="#" class="hover:text-cyber-accent transition">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-3 text-sm">Đăng Ký Nhận Tin</h4>
+                <p class="text-xs text-gray-400 mb-3">Nhận thông tin bộ sưu tập mới và mã giảm giá độc quyền.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Email của bạn..." class="bg-cyber-900 text-xs px-3 py-2 rounded-l-lg border border-cyber-700 focus:outline-none focus:border-cyber-accent w-full text-white">
+                    <button onclick="alert('Đăng ký nhận tin thành công!')" class="bg-cyber-accent text-cyber-900 font-bold px-4 rounded-r-lg text-xs hover:bg-cyan-400 transition">Gửi</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-cyber-700/50 text-center text-xs">
+            &copy; 2026 CyberForge Vietnam. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cyber-800 border border-cyber-700 rounded-2xl max-w-3xl w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-8 h-8 bg-cyber-900/80 hover:bg-cyber-700 text-gray-300 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="aspect-square bg-cyber-900">
+                    <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <span id="modalCategory" class="inline-block bg-cyber-accent/10 text-cyber-accent text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider mb-3"></span>
+                        <h3 id="modalName" class="text-2xl font-extrabold text-white mb-2"></h3>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="text-yellow-400 text-xs">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <span class="text-gray-400 text-xs" id="modalReviews"></span>
+                        </div>
+                        <div id="modalPrice" class="text-2xl font-black text-cyber-accent mb-4"></div>
+                        <p id="modalDesc" class="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed"></p>
+
+                        <!-- Size Selector (Hidden for Eyewear / Phụ Kiện kính) -->
+                        <div id="sizeSection" class="mb-5">
+                            <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Chọn kích thước:</label>
+                            <div id="modalSizes" class="flex gap-2"></div>
+                        </div>
+
+                        <!-- Color / Eyewear Variant Selector -->
+                        <div class="mb-6">
+                            <label id="colorLabel" class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Chọn màu sắc:</label>
+                            <div id="modalColors" class="flex gap-3"></div>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="flex items-center gap-4 mb-6">
+                            <label class="text-xs font-bold text-gray-300 uppercase tracking-wider">Số lượng:</label>
+                            <div class="flex items-center border border-cyber-700 rounded-lg bg-cyber-900">
+                                <button onclick="adjustModalQty(-1)" class="px-3 py-1.5 text-gray-300 hover:text-cyber-accent transition">-</button>
+                                <span id="modalQty" class="px-3 text-sm font-bold text-white">1</span>
+                                <button onclick="adjustModalQty(1)" class="px-3 py-1.5 text-gray-300 hover:text-cyber-accent transition">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="addToCartFromModal()" class="w-full bg-cyber-accent hover:bg-cyan-400 text-cyber-900 font-extrabold py-3.5 rounded-xl shadow-lg shadow-cyber-accent/20 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> Thêm Vào Giỏ Hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden transition-opacity">
+        <div class="absolute inset-y-0 right-0 max-w-md w-full bg-cyber-800 border-l border-cyber-700 shadow-2xl flex flex-col transform transition-transform">
+            <!-- Cart Header -->
+            <div class="p-5 border-b border-cyber-700 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-bag-shopping text-cyber-accent text-lg"></i>
+                    <h3 class="font-extrabold text-white text-lg">Giỏ Hàng Của Bạn</h3>
+                </div>
+                <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-cyber-900 hover:bg-cyber-700 text-gray-300 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Cart Items List -->
+            <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-4 divide-y divide-cyber-700/50">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Cart Footer -->
+            <div class="p-5 border-t border-cyber-700 bg-cyber-900/50">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-400 text-sm">Tổng cộng:</span>
+                    <span id="cartTotalPrice" class="text-xl font-black text-cyber-accent">0đ</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-cyber-accent hover:bg-cyan-400 text-cyber-900 font-extrabold py-3.5 rounded-xl shadow-lg shadow-cyber-accent/20 transition text-center block">
+                    Tiến Hành Thanh Toán
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WISHLIST MODAL -->
+    <div id="wishlistModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cyber-800 border border-cyber-700 rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl p-6 relative">
+            <div class="flex items-center justify-between mb-4 border-b border-cyber-700 pb-3">
+                <h3 class="font-extrabold text-white text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-heart text-cyber-purple"></i> Sản Phẩm Yêu Thích
+                </h3>
+                <button onclick="openWishlist()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div id="wishlistItemsList" class="max-h-80 overflow-y-auto space-y-3">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Áo Khoác Cyber Jacket V2",
+                category: "Áo Khoác",
+                price: 1250000,
+                rating: 4.8,
+                reviews: 128,
+                image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop",
+                description: "Áo khoác phong cách techwear tương lai với nhiều túi hộp tiện lợi, chất liệu vải chống nước cao cấp và đường may phản quang sắc nét.",
+                sizes: ["S", "M", "L", "XL"],
+                colors: [{name: "Đen Carbon", hex: "#111827"}, {name: "Xám Titan", hex: "#4b5563"}, {name: "Xanh Neon", hex: "#00f0ff"}]
+            },
+            {
+                id: 2,
+                name: "Áo Thun Oversize NeoTokyo",
+                category: "Áo Thun",
+                price: 350000,
+                rating: 4.9,
+                reviews: 94,
+                image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop",
+                description: "Áo thun cotton hữu cơ form rộng thoải mái in họa tiết đồ họa phong cách cyberpunk Nhật Bản bền màu.",
+                sizes: ["S", "M", "L", "XL"],
+                colors: [{name: "Đen", hex: "#000000"}, {name: "Trắng Sữa", hex: "#f3f4f6"}]
+            },
+            {
+                id: 3,
+                name: "Quần Cargo Pants Đa Túi",
+                category: "Quần Jeans",
+                price: 780000,
+                rating: 4.7,
+                reviews: 62,
+                image: "https://images.unsplash.com/photo-1517445312882-bc9910d016b7?q=80&w=800&auto=format&fit=crop",
+                description: "Quần dài phong cách đường phố với các đai khóa và túi hộp tiện dụng, co giãn tốt, mặc cực kỳ thoải mái.",
+                sizes: ["S", "M", "L", "XL"],
+                colors: [{name: "Đen Mờ", hex: "#1f293d"}, {name: "Xanh Rêu", hex: "#3f6212"}]
+            },
+            {
+                id: 4,
+                name: "Kính Mát Cyber Shield Visor",
+                category: "Phụ Kiện",
+                price: 550000,
+                rating: 4.6,
+                reviews: 64,
+                image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=800&auto=format&fit=crop",
+                description: "Kính thời trang phong cách tương lai, chống tia cực tím và bảo vệ mắt toàn diện.",
+                // Không có sizes cho kính
+                colors: [
+                    {name: "Gọng Đen / Tròng Khói", hex: "#111827"},
+                    {name: "Gọng Bạc / Tròng Xanh", hex: "#94a3b8"},
+                    {name: "Gọng Vàng / Tròng Đen", hex: "#eab308"}
+                ]
+            },
+            {
+                id: 5,
+                name: "Đầm Slip Dress Urban Tech",
+                category: "Váy/Đầm",
+                price: 650000,
+                rating: 4.9,
+                reviews: 41,
+                image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop",
+                description: "Váy thiết kế hiện đại tôn dáng, chất liệu lụa satin cao cấp kết hợp đường cắt sắc sảo.",
+                sizes: ["S", "M", "L"],
+                colors: [{name: "Đen Tuyệt Đối", hex: "#000000"}, {name: "Đỏ Đô", hex: "#991b1b"}]
+            },
+            {
+                id: 6,
+                name: "Áo Hoodie Hacker Dark",
+                category: "Áo Khoác",
+                price: 890000,
+                rating: 4.8,
+                reviews: 112,
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop",
+                description: "Áo hoodie nỉ dày dặn ấm áp kèm khẩu trang tích hợp, thiết kế đặc trưng cho giới coder và techwear.",
+                sizes: ["S", "M", "L", "XL"],
+                colors: [{name: "Đen Tối", hex: "#0b0f19"}, {name: "Xám Chì", hex: "#374151"}]
+            },
+            {
+                id: 7,
+                name: "Quần Jeans Slim Fit Rách Gối",
+                category: "Quần Jeans",
+                price: 680000,
+                rating: 4.5,
+                reviews: 53,
+                image: "https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=800&auto=format&fit=crop",
+                description: "Quần jeans denim wash cao cấp ôm nhẹ, thiết kế rách gối cá tính năng động.",
+                sizes: ["28", "29", "30", "31", "32"],
+                colors: [{name: "Xanh Đậm", hex: "#1e3a8a"}, {name: "Đen Xám", hex: "#1f293d"}]
+            },
+            {
+                id: 8,
+                name: "Kính Mát Matrix Shield",
+                category: "Phụ Kiện",
+                price: 490000,
+                rating: 4.7,
+                reviews: 38,
+                image: "https://images.unsplash.com/photo-1508296695146-257a814070b4?q=80&w=800&auto=format&fit=crop",
+                description: "Mẫu kính râm độc lạ gọng mảnh thời thượng, phong cách tối giản đậm chất điện ảnh.",
+                colors: [
+                    {name: "Gọng Đen / Tròng Đen", hex: "#000000"},
+                    {name: "Gọng Vàng / Tròng Trà", hex: "#ca8a04"}
+                ]
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let currentSelectedProduct = null;
+        let selectedSize = '';
+        let selectedColor = '';
+        let modalQuantity = 1;
+        let currentFilter = 'Tất cả';
+
+        // Format Currency
+        function formatVND(price) {
+            return price.toLocaleString('vi-VN') + 'đ';
+        }
+
+        // Render Products
+        function renderProducts(filter = 'Tất cả', search = '') {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            const filtered = products.filter(p => {
+                const matchCategory = (filter === 'Tất cả' || p.category === filter);
+                const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400">Không tìm thấy sản phẩm nào phù hợp.</div>`;
+                return;
+            }
+
+            filtered.forEach(product => {
+                const isWishlisted = wishlist.includes(product.id);
+                const card = document.createElement('div');
+                card.className = "bg-cyber-800 border border-cyber-700 rounded-xl overflow-hidden hover:border-cyber-accent transition group flex flex-col justify-between";
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden bg-cyber-900 cursor-pointer" onclick="openModal(${product.id})">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="absolute top-3 right-3 w-8 h-8 rounded-full bg-cyber-900/80 backdrop-blur-md flex items-center justify-center text-gray-300 hover:text-cyber-purple transition">
+                            <i class="${isWishlisted ? 'fa-solid text-cyber-purple' : 'fa-regular'} fa-heart"></i>
+                        </button>
+                        <span class="absolute bottom-3 left-3 bg-cyber-900/80 backdrop-blur-md text-cyber-accent text-[10px] font-bold px-2.5 py-1 rounded-full uppercase">${product.category}</span>
+                    </div>
+                    <div class="p-4 flex flex-col flex-1 justify-between">
+                        <div>
+                            <h3 onclick="openModal(${product.id})" class="font-bold text-white text-sm sm:text-base mb-1 hover:text-cyber-accent cursor-pointer transition line-clamp-1">${product.name}</h3>
+                            <div class="flex items-center gap-1 text-yellow-400 text-xs mb-2">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="text-gray-300 font-semibold">${product.rating}</span>
+                                <span class="text-gray-500">(${product.reviews})</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-cyber-accent font-extrabold text-base">${formatVND(product.price)}</span>
+                            <button onclick="openModal(${product.id})" class="bg-cyber-700 hover:bg-cyber-accent hover:text-cyber-900 text-white p-2.5 rounded-lg transition text-xs font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-eye"></i> Xem
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Category
+        function filterCategory(category) {
+            currentFilter = category;
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                if (btn.textContent.trim() === category) {
+                    btn.className = "category-btn active bg-cyber-accent text-cyber-900 font-semibold text-xs px-4 py-2 rounded-lg transition";
+                } else {
+                    btn.className = "category-btn bg-cyber-800 text-gray-300 border border-cyber-700 hover:border-cyber-accent font-semibold text-xs px-4 py-2 rounded-lg transition";
+                }
+            });
+            const search = document.getElementById('searchInput').value;
+            renderProducts(currentFilter, search);
+        }
+
+        // Search Input Event
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderProducts(currentFilter, e.target.value);
+        });
+
+        // Open Modal
+        function openModal(productId) {
+            currentSelectedProduct = products.find(p => p.id === productId);
+            if (!currentSelectedProduct) return;
+
+            document.getElementById('modalImg').src = currentSelectedProduct.image;
+            document.getElementById('modalCategory').textContent = currentSelectedProduct.category;
+            document.getElementById('modalName').textContent = currentSelectedProduct.name;
+            document.getElementById('modalReviews').textContent = `${currentSelectedProduct.reviews} đánh giá`;
+            document.getElementById('modalPrice').textContent = formatVND(currentSelectedProduct.price);
+            document.getElementById('modalDesc').textContent = currentSelectedProduct.description;
+
+            modalQuantity = 1;
+            document.getElementById('modalQty').textContent = modalQuantity;
+
+            // Xử lý riêng cho kính mắt (Phụ Kiện): Bỏ phần chọn size hoàn toàn
+            const sizeSection = document.getElementById('sizeSection');
+            const colorLabel = document.getElementById('colorLabel');
+            
+            if (currentSelectedProduct.category === 'Phụ Kiện') {
+                sizeSection.style.display = 'none';
+                selectedSize = '';
+                colorLabel.textContent = 'Chọn phiên bản màu sắc & tròng kính:';
+            } else {
+                sizeSection.style.display = 'block';
+                colorLabel.textContent = 'Chọn màu sắc:';
+                selectedSize = currentSelectedProduct.sizes[0];
+                const sizesContainer = document.getElementById('modalSizes');
+                sizesContainer.innerHTML = '';
+                currentSelectedProduct.sizes.forEach((size, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-bold border transition ${idx === 0 ? 'bg-cyber-accent text-cyber-900 border-cyber-accent' : 'bg-cyber-900 text-gray-300 border-cyber-700 hover:border-cyber-accent'}`;
+                    btn.textContent = size;
+                    btn.onclick = () => {
+                        selectedSize = size;
+                        Array.from(sizesContainer.children).forEach(b => {
+                            b.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold border bg-cyber-900 text-gray-300 border-cyber-700 hover:border-cyber-accent';
+                        });
+                        btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold border bg-cyber-accent text-cyber-900 border-cyber-accent';
+                    };
+                    sizesContainer.appendChild(btn);
+                });
+            }
+
+            // Colors
+            selectedColor = currentSelectedProduct.colors[0].name;
+            const colorsContainer = document.getElementById('modalColors');
+            colorsContainer.innerHTML = '';
+            currentSelectedProduct.colors.forEach((col, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${idx === 0 ? 'border-cyber-accent bg-cyber-700 text-white' : 'border-cyber-700 bg-cyber-900 text-gray-300'}`;
+                btn.innerHTML = `<span class="w-3 h-3 rounded-full inline-block border border-white/20" style="background-color: ${col.hex}"></span> ${col.name}`;
+                btn.onclick = () => {
+                    selectedColor = col.name;
+                    Array.from(colorsContainer.children).forEach(b => {
+                        b.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border border-cyber-700 bg-cyber-900 text-gray-300';
+                    });
+                    btn.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold border border-cyber-accent bg-cyber-700 text-white';
+                };
+                colorsContainer.appendChild(btn);
+            });
+
+            document.getElementById('productModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function adjustModalQty(amount) {
+            modalQuantity = Math.max(1, modalQuantity + amount);
+            document.getElementById('modalQty').textContent = modalQuantity;
+        }
+
+        // Add to Cart from Modal
+        function addToCartFromModal() {
+            if (!currentSelectedProduct) return;
+
+            const cartItemKey = `${currentSelectedProduct.id}-${selectedSize}-${selectedColor}`;
+            const existing = cart.find(item => item.key === cartItemKey);
+
+            if (existing) {
+                existing.quantity += modalQuantity;
+            } else {
+                cart.push({
+                    key: cartItemKey,
+                    id: currentSelectedProduct.id,
+                    name: currentSelectedProduct.name,
+                    price: currentSelectedProduct.price,
+                    image: currentSelectedProduct.image,
+                    size: selectedSize,
+                    color: selectedColor,
+                    quantity: modalQuantity,
+                    category: currentSelectedProduct.category
+                });
+            }
+
+            updateCartBadge();
+            closeModal();
+            toggleCart();
+        }
+
+        // Toggle Cart Drawer
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            drawer.classList.toggle('hidden');
+            if (!drawer.classList.contains('hidden')) {
+                renderCartItems();
+            }
+        }
+
+        // Render Cart Items
+        function renderCartItems() {
+            const list = document.getElementById('cartItemsList');
+            list.innerHTML = '';
+
+            if (cart.length === 0) {
+                list.innerHTML = `<div class="text-center py-12 text-gray-400 text-sm">Giỏ hàng của bạn đang trống.</div>`;
+                document.getElementById('cartTotalPrice').textContent = '0đ';
+                return;
+            }
+
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = "flex gap-4 pt-4";
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg bg-cyber-900 border border-cyber-700">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-white text-sm">${item.name}</h4>
+                        <p class="text-xs text-gray-400 mb-1">
+                            ${item.category === 'Phụ Kiện' ? '' : `Size: ${item.size} | `} Màu: ${item.color}
+                        </p>
+                        <div class="flex items-center justify-between mt-2">
+                            <span class="text-cyber-accent font-bold text-xs">${formatVND(item.price)}</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeCartQty(${index}, -1)" class="w-6 h-6 rounded bg-cyber-900 text-gray-300 hover:text-cyber-accent border border-cyber-700 flex items-center justify-center text-xs">-</button>
+                                <span class="text-xs font-bold text-white">${item.quantity}</span>
+                                <button onclick="changeCartQty(${index}, 1)" class="w-6 h-6 rounded bg-cyber-900 text-gray-300 hover:text-cyber-accent border border-cyber-700 flex items-center justify-center text-xs">+</button>
+                                <button onclick="removeCartItem(${index})" class="text-red-400 hover:text-red-300 ml-2 text-xs"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+
+            document.getElementById('cartTotalPrice').textContent = formatVND(total);
+        }
+
+        function changeCartQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function updateCartBadge() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        // Wishlist Toggle
+        function toggleWishlist(productId) {
+            const idx = wishlist.indexOf(productId);
+            if (idx > -1) {
+                wishlist.splice(idx, 1);
+            } else {
+                wishlist.push(productId);
+            }
+            updateWishlistBadge();
+            renderProducts(currentFilter, document.getElementById('searchInput').value);
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlistCount');
+            if (wishlist.length > 0) {
+                badge.textContent = wishlist.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function openWishlist() {
+            const modal = document.getElementById('wishlistModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                const list = document.getElementById('wishlistItemsList');
+                list.innerHTML = '';
+                if (wishlist.length === 0) {
+                    list.innerHTML = `<p class="text-center text-gray-400 text-xs py-6">Chưa có sản phẩm yêu thích nào.</p>`;
+                    return;
+                }
+                wishlist.forEach(id => {
+                    const prod = products.find(p => p.id === id);
+                    if (prod) {
+                        const row = document.createElement('div');
+                        row.className = "flex items-center justify-between bg-cyber-900 p-3 rounded-xl border border-cyber-700";
+                        row.innerHTML = `
+                            <div class="flex items-center gap-3">
+                                <img src="${prod.image}" class="w-12 h-12 object-cover rounded-lg">
+                                <div>
+                                    <h4 class="font-bold text-white text-xs">${prod.name}</h4>
+                                    <span class="text-cyber-accent text-xs">${formatVND(prod.price)}</span>
+                                </div>
+                            </div>
+                            <button onclick="openModal(${prod.id}); openWishlist();" class="bg-cyber-accent text-cyber-900 text-xs font-bold px-3 py-1.5 rounded-lg">Xem</button>
+                        `;
+                        list.appendChild(row);
+                    }
+                });
+            }
+        }
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            alert('Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại CyberForge. Đơn hàng của bạn đang được xử lý.');
+            cart = [];
+            updateCartBadge();
+            toggleCart();
+        }
+
+        // Initial render
+        renderProducts();
+    </script>
+</body>
+</html>
